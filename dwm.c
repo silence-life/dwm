@@ -1380,6 +1380,12 @@ killclient(const Arg *arg)
 		XSetErrorHandler(xerror);
 		XUngrabServer(dpy);
 	}
+	if (selmon->bt < 2) {
+		if (selmon->lt[selmon->sellt] == &layouts[0])
+			return;
+		else
+			setlayout(&((Arg) { .v = &layouts[0] }));
+	}
 }
 
 void
